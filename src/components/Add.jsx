@@ -7,7 +7,8 @@ class Add extends Component {
       imageURL: '',
       name: '',
       description: ''
-    }
+    },
+    error:""
   };
 
   handleAdd = () => {
@@ -15,7 +16,16 @@ class Add extends Component {
       imageURL: this.state.newPokemon.imageURL,
       name: this.state.newPokemon.name,
       description: this.state.newPokemon.description,
+    }).then((response) => {
+      $("#exampleModalCenter").modal('hide');
     })
+    .catch((error) => {
+      if(error.response.data != null && error.response.data.message != null){
+        this.setState({error:error.response.data.message});
+      } else {
+        this.setState({error:error.response.statusText});
+      }
+    });
   }
 
   handleChange = ({ currentTarget: input }) => {
@@ -63,9 +73,10 @@ class Add extends Component {
               </div>
 
               <div className="modal-body">
+                <h5 className="text-danger">{this.state.error}</h5>
                 <div className="card" style={{ width: "18rem" }}>
                   <div className="card-body bg-light">
-                    
+
                     <img
                       src={this.state.newPokemon.imageURL.length === 0 ? "https://static.thenounproject.com/png/22161-200.png" : this.state.newPokemon.imageURL}
                       className="card-img-top p-2"
@@ -101,7 +112,7 @@ class Add extends Component {
                   </div>
                 </div>
               </div>
-              
+
               <div className="modal-footer">
                 <button
                   type="button"
