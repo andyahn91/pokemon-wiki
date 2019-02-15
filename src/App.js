@@ -6,8 +6,10 @@ require('./App.css');
 
 class App extends Component {
   state = {
+    pokemons: [],
+    current: 0,
     pokemon: {
-      image: '',
+      imageURL: '',
       name: '',
       description: '',
     }
@@ -16,14 +18,17 @@ class App extends Component {
   componentDidMount(){
     fetch('http://localhost:3001/')
       .then(res => res.json())
-      .then(res => console.log(res))
+      .then(res => this.state.pokemons = [...res])
+      .catch(err => console.log(err));
+
+    this.setState({ pokemon : this.state.pokemons[this.state.current] });
   }
 
   render() {
     return (
-      <div className="container-fluid">
+      <div className="container">
         <NavBar id="navBar"/>
-        <Items id="items"/>
+        <Items id="items" pokemon={this.state.pokemon}/>
         <Add />
       </div>
     );

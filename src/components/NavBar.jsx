@@ -9,7 +9,6 @@ class NavBar extends Component {
     event.preventDefault();
 
     console.log(this.state.search)
-    // send 
   };
 
   handleChange = event => {
