@@ -34,10 +34,12 @@ class Items extends Component {
   }
 
   componentDidMount(){
-
+    console.log('Item componentDidMount!');
   }
 
   render() {
+    console.log('Items Component Rendered!');
+
     return (
       <div className="card" style={{ width: "18rem" }}>
         <img

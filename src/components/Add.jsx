@@ -10,6 +10,10 @@ class Add extends Component {
     }
   };
 
+  componentDidMount(){
+    console.log('Add componentDidMount!');
+  }
+  
   handleAdd = () => {
     axios.post("http://localhost:3001/add", {
       imageURL: this.state.newPokemon.imageURL,
@@ -25,6 +29,7 @@ class Add extends Component {
   }
 
   render() {
+    console.log('Add Component Rendered!');
     return (
       <div className="text-right">
 

@@ -5,6 +5,10 @@ class NavBar extends Component {
     search: '',
   };
 
+  componentDidMount(){
+    console.log('NavBar componentDidMount!');
+  }
+  
   handleSubmit = event => {
     event.preventDefault();
 
@@ -19,6 +23,7 @@ class NavBar extends Component {
   }
 
   render() {
+    console.log('NavBar Component Rendered!');
     return (
       <nav className="navbar navbar-light">
         <a className="navbar-brand" href="#">

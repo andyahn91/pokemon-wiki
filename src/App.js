@@ -16,15 +16,21 @@ class App extends Component {
   }
 
   componentDidMount(){
+    console.log('App componentDidMount!');
     fetch('http://localhost:3001/')
       .then(res => res.json())
-      .then(res => this.state.pokemons = [...res])
+      .then(res => this.setState({
+        pokemons : [...res],
+        pokemon : pokemons[current],
+      }))
       .catch(err => console.log(err));
 
-    this.setState({ pokemon : this.state.pokemons[this.state.current] });
+    console.log(this.state.pokemon)
   }
 
   render() {
+    console.log('App Component Rendered!');
+
     return (
       <div className="container">
         <NavBar id="navBar"/>
