@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
     .then(data => res.json(data))
 })
 
-app.post('/add', itemController.postItem, (req,res) => res.redirect('/'));
+app.post('/add', itemController.postItem);
 
 const PORT = 3001;
 

@@ -53,10 +53,10 @@ class Items extends Component {
           <div className="text-right">
             <button
               type="button"
-              onMouseEnter={() => "btn btn-danger"}
-              className="btn btn-outline-danger"
+              onMouseEnter={() => "btn btn-info"}
+              className="btn btn-outline-info"
             >
-              Delete
+              Next
             </button>
           </div>
         </div>
