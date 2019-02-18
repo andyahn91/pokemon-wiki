@@ -25,7 +25,7 @@ class NavBar extends Component {
   render() {
     console.log('NavBar Component Rendered!');
     return (
-      <nav className="navbar navbar-light">
+      <nav className="navbar navbar-light p-0">
         <a className="navbar-brand" href="#">
           <img src="https://i.imgur.com/f3Y3Mvg.png" />
         </a>
