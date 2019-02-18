@@ -7,21 +7,21 @@ module.exports = {
   },
   postItem(req, res, next) {
     if(req.body.name != null && req.body.name != "" &&
-       req.body.description != null && req.body.description != ""){
-       Item.create({
-         imageURL: req.body.imageURL,
-         name: req.body.name,
-         description: req.body.description,
-       })
-       .then(message => res.json(message))
-       .catch(err => {
-         res.status(500);
-         res.json(err);
-       });
-     } else {
-       res.status(400);
-       res.json({message:"Please pass name and description"});
-     }
+      req.body.description != null && req.body.description != ""){
+      Item.create({
+        imageURL: req.body.imageURL,
+        name: req.body.name,
+        description: req.body.description,
+      })
+      .then(message => res.json(message))
+      .catch(err => {
+        res.status(500);
+        res.json(err);
+      });
+    } else {
+      res.status(400);
+      res.json({message:"Please pass name and description"});
+    }
   },
   deleteItem(req, res) {
     Item.deleteOne({
