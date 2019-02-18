@@ -1,5 +1,19 @@
+html,body {
+  height: 100%;
+}
+
 .card {
   margin: auto;
   float: none;
   margin-bottom: 10px;
 }
+
+.vcenter {
+  display: flex;
+  align-items: center;
+}
+
+/* .row {
+  min-height: 100%;
+  height: 100%;
+} */
