@@ -1,13 +1,12 @@
-import React, { Component } from "react";
-const axios = require('axios');
-require("./App.css");
-
-import Items from "./components/Items.jsx";
+import React, { Component } from 'react';
 import NavBar from "./components/NavBar.jsx";
 import Add from "./components/Add.jsx";
+import Items from "./components/Items.jsx";
 import LeftItem from "./components/LeftItem.jsx";
 import RightItem from "./components/RightItem.jsx";
+import './App.css';
 
+import axios from 'axios';
 
 class App extends Component {
   state = {
@@ -37,34 +36,42 @@ class App extends Component {
     });
   }
 
+  // show previous item
   handlePrevious = () => {
-    let newCurrent = this.state.current + 1;
+    const { current, pokemons } = this.state;
 
-    if (this.state.current <= this.state.pokemons.length - 1) {
+    // if current item is the first one, show the last item
+    if (current === 0) {
+      let lastIndex = pokemons.length - 1;
+
       this.setState({
-        current: 0,
-        pokemon: this.state.pokemons[0]
-      });
+        current: lastIndex,
+        pokemon: pokemons[lastIndex],
+      })
     } else {
+      let newCurrent = current - 1;
+      
       this.setState({
-        current: (this.state.current += 1),
-        pokemon: this.state.pokemons[newCurrent]
-      });
+        current: newCurrent,
+        pokemon: pokemons[newCurrent],
+      })
     }
   };
 
   handleNext = () => {
-    let newCurrent = this.state.current + 1;
+    const { current, pokemons } = this.state;
 
-    if (this.state.current >= this.state.pokemons.length - 1) {
+    // if current item is the last item, show the first item
+    if (current === pokemons.length - 1) {
       this.setState({
         current: 0,
-        pokemon: this.state.pokemons[0]
+        pokemon: pokemons[0]
       });
     } else {
+      let newCurrent = current + 1;
       this.setState({
-        current: (this.state.current += 1),
-        pokemon: this.state.pokemons[newCurrent]
+        current: (newCurrent),
+        pokemon: pokemons[newCurrent]
       });
     }
   };
@@ -79,7 +86,6 @@ class App extends Component {
             <LeftItem onClick={this.handlePrevious} />
             <Items
               pokemon={this.state.pokemon}
-              onNext={this.handleNext}
               // onDelete={this.handleDelete}
             />
             <RightItem onClick={this.handleNext} />
