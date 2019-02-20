@@ -3,9 +3,10 @@ const Item = require('./../models/ItemModel.js');
 module.exports = {
   getItem(req, res) {
     Item.find()
-      .then(res => console.log(res));
+      .then(data => res.json(data));
   },
   postItem(req, res, next) {
+    // Checks if input is empty. If not empty, return the request
     if (req.body.name !== null && req.body.name !== '' &&
       req.body.description !== null && req.body.description !== '') {
       Item.create({
