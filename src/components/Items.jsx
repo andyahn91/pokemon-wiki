@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const Items = (props) => {
   const { imageURL, name, description } = props.pokemon;
