@@ -1,31 +1,28 @@
 import React, { Component } from "react";
 
+/**
+ * currently it only exist as UI
+ * handleSubmit's functionality is not completed
+ */
 class NavBar extends Component {
   state = {
     search: '',
   };
 
-  componentDidMount(){
-    console.log('NavBar componentDidMount!');
-  }
-  
   handleSubmit = event => {
     event.preventDefault();
-
-    console.log(this.state.search)
   };
 
   handleChange = event => {
-    let search = {...this.state.search};
+    let search = { ...this.state.search };
     search = event.currentTarget.value;
 
     this.setState({ search });
-  }
+  };
 
   render() {
-    console.log('NavBar Component Rendered!');
     return (
-      <nav className="navbar navbar-light p-0">
+      <nav className="navbar navbar-light bg-light">
         <a className="navbar-brand" href="#">
           <img src="https://i.imgur.com/f3Y3Mvg.png" />
         </a>
