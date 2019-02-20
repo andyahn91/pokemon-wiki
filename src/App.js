@@ -69,10 +69,6 @@ class App extends Component {
     }
   };
 
-  handleDelete = () => {
-
-  }
-
   render() {
     return (
       <React.Fragment>
