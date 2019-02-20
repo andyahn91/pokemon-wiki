@@ -70,21 +70,15 @@ class App extends Component {
         <NavBar />
         <div className="container-fluid p-3">
           <Add />
-          <div className="row align-items-center">
-            <div className="col-sm d-flex flex-row-reverse">
-              <LeftItem onClick={this.handlePrevious} />
-            </div>
-            <div className="col-sm d-flex justify-content-center">
-              <Items
-                pokemon={this.state.pokemon}
-                onNext={this.handleNext}
-                onDelete={this.handleDelete}
-              />
-            </div>
-            <div className="col-sm d-flex flex-row">
+          <main className="d-flex justify-content-center align-items-center">
+            <LeftItem onClick={this.handlePrevious} />
+            <Items
+              pokemon={this.state.pokemon}
+              onNext={this.handleNext}
+              onDelete={this.handleDelete}
+            />
             <RightItem onClick={this.handleNext} />
-            </div>
-          </div>
+          </main>
         </div>
       </React.Fragment>
     );
