@@ -8,16 +8,23 @@ class Add extends Component {
       name: '',
       description: ''
     },
-    error:""
+    error:''
   };
 
+  defaultImage = () => {
+    const questionImage = 'https://static.thenounproject.com/png/22161-200.png';
+    let image = this.state.newPokemon.imageURL;
+
+    return image === undefined ? questionImage : image;
+  }
+
   handleAdd = () => {
-    axios.post("http://localhost:3001/add", {
+    axios.post('http://localhost:3001/add', {
       imageURL: this.state.newPokemon.imageURL,
       name: this.state.newPokemon.name,
       description: this.state.newPokemon.description,
     }).then((response) => {
-      $("#exampleModalCenter").modal('hide');
+      $('#addNewPokemon').modal('hide');
     })
     .catch((error) => {
       if(error.response.data != null && error.response.data.message != null){
@@ -38,30 +45,31 @@ class Add extends Component {
     return (
       <div className="text-right">
 
+        {/* This button opens a modal window to add a new pokemon */}
         <button
           type="button"
           className="btn btn-primary"
           data-toggle="modal"
-          data-target="#exampleModalCenter"
+          data-target="#addNewPokemon"
         >
           Add
         </button>
 
+        {/* modal window */}
         <div
           className="modal fade"
-          id="exampleModalCenter"
+          id="addNewPokemon"
           tabIndex="-1"
           role="dialog"
-          aria-labelledby="exampleModalCenterTitle"
+          aria-labelledby="addNewPokemonTitle"
           aria-hidden="true"
         >
           <div className="modal-dialog modal-dialog-centered" role="document">
             <div className="modal-content">
 
+              {/* head */}
               <div className="modal-header">
-                <h5 className="modal-title" id="exampleModalCenterTitle">
-                  Add a new Pokémon!
-                </h5>
+                <h5 className="modal-title" id="addNewPokemonTitle">Add a new Pokémon!</h5>
                 <button
                   type="button"
                   className="close"
@@ -71,7 +79,9 @@ class Add extends Component {
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
+              {/* head end */}
 
+              {/* body */}
               <div className="modal-body d-flex align-items-center flex-column">
                 <h5 className="text-danger text-center mb-auto">{this.state.error}</h5>
                 <div className="card" style={{ width: "18rem" }}>
@@ -112,7 +122,9 @@ class Add extends Component {
                   </div>
                 </div>
               </div>
+              {/* body end */}
 
+              {/* footer */}
               <div className="modal-footer">
                 <button
                   type="button"
@@ -125,9 +137,13 @@ class Add extends Component {
                   Save
                 </button>
               </div>
+              {/* footer end */}
+
             </div>
           </div>
         </div>
+        {/* modal window end */}
+
       </div>
     );
   }
