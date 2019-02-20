@@ -11,10 +11,6 @@ class Add extends Component {
     error:""
   };
 
-  componentDidMount(){
-    console.log('Add componentDidMount!');
-  }
-  
   handleAdd = () => {
     axios.post("http://localhost:3001/add", {
       imageURL: this.state.newPokemon.imageURL,
@@ -39,7 +35,6 @@ class Add extends Component {
   }
 
   render() {
-    console.log('Add Component Rendered!');
     return (
       <div className="text-right">
 
@@ -77,8 +72,8 @@ class Add extends Component {
                 </button>
               </div>
 
-              <div className="modal-body">
-                <h5 className="text-danger">{this.state.error}</h5>
+              <div className="modal-body d-flex align-items-center flex-column">
+                <h5 className="text-danger text-center mb-auto">{this.state.error}</h5>
                 <div className="card" style={{ width: "18rem" }}>
                   <div className="card-body bg-light">
 
