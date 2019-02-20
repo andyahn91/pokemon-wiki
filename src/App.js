@@ -1,10 +1,13 @@
 import React, { Component } from "react";
+const axios = require('axios');
+require("./App.css");
+
 import Items from "./components/Items.jsx";
 import NavBar from "./components/NavBar.jsx";
 import Add from "./components/Add.jsx";
 import LeftItem from "./components/LeftItem.jsx";
 import RightItem from "./components/RightItem.jsx";
-require("./App.css");
+
 
 class App extends Component {
   state = {
@@ -17,10 +20,16 @@ class App extends Component {
     }
   };
 
-  //
+  // wait till the data from server to comeback, then setState with the response
   async componentDidMount() {
-    let data = await fetch("http://localhost:3001/");
-    let result = await data.json();
+    let result;
+
+    try {
+      let response = await axios.get("http://localhost:3001/");
+      result = response.data;
+    } catch (error) {
+      console.log(error);
+    }
 
     this.setState({
       pokemons: [...result],
@@ -75,7 +84,7 @@ class App extends Component {
             <Items
               pokemon={this.state.pokemon}
               onNext={this.handleNext}
-              onDelete={this.handleDelete}
+              // onDelete={this.handleDelete}
             />
             <RightItem onClick={this.handleNext} />
           </main>
