@@ -11,16 +11,17 @@ class Add extends Component {
     error:''
   };
 
-  defaultImage = () => {
+  // It there is no imageURL, return a URL of a question mark image
+  handleEmptyImageURL = () => {
     const questionImage = 'https://static.thenounproject.com/png/22161-200.png';
     let image = this.state.newPokemon.imageURL;
 
-    return image === undefined ? questionImage : image;
+    return image.length === 0 ? questionImage : image;
   }
 
   handleAdd = () => {
     axios.post('http://localhost:3001/add', {
-      imageURL: this.state.newPokemon.imageURL,
+      imageURL: this.handleEmptyImageURL(),
       name: this.state.newPokemon.name,
       description: this.state.newPokemon.description,
     }).then((response) => {
@@ -88,7 +89,7 @@ class Add extends Component {
                   <div className="card-body bg-light">
 
                     <img
-                      src={this.state.newPokemon.imageURL.length === 0 ? "https://static.thenounproject.com/png/22161-200.png" : this.state.newPokemon.imageURL}
+                      src={this.handleEmptyImageURL()}
                       className="card-img-top p-2"
                     />
 
